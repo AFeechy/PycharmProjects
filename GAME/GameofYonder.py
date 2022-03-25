@@ -4,7 +4,7 @@ from sys import argv
 
 script, input_file_1 = argv
 
-inventory = ["thing, another thing,  because of this thing"]
+inventory = ["thing", "thing 1",  "because of this thing"]
 
 global wallet
 
@@ -27,6 +27,7 @@ Here you can buy and sell all your favourite rocks, from the safety of your own 
 
     time.sleep(1)
     print("Please enter your username")
+
     username = input("> ")
     print(f"Hey {username} ! Lets play !")
     time.sleep(1)
@@ -446,7 +447,7 @@ def start():
     City Centre""")
 
     print("In your bag you have:")
-    print_inventory(inventory)
+
     while True:
         print("Where would you like to go?")
         choice = input("> ")
@@ -465,27 +466,24 @@ def start():
         elif choice.lower() == "city centre":
             city_centre()
 
-        else:
-            print(f"Im sorry there are no good rocks in {choice}...")
 
+def statcheck(inp, w, i, bank_file):
+    print(inp)
+    if inp == "wallet":
+        print(w)
 
-def statcheck(input, wallet, inventory, bank_file):
-    if "wallet" in input:
-        print(wallet)
+    elif inp == "inventory":
+        print(i)
 
-    elif "inventory" or "i" in input:
-        print(inventory)
-
-    # elif "bank" in input:
-    #     balance = (open(bank_file, 'r'))
-    #     print(balance)
+    elif inp == "bank":
+        balance = (open(bank_file, 'r'))
+        print(balance)
 
 
 def print_inventory(inventory):
+    # inventory_sort = inventory.sort()
+    # for item in inventory_sort:
     for item in inventory:
         print(item)
-
-
-
 
 username_enter()
