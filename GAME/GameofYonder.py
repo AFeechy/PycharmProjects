@@ -4,7 +4,7 @@ from sys import argv
 
 script, input_file_1 = argv
 
-inventory = ["thing"]
+inventory = ["thing, another thing,  because of this thing"]
 
 global wallet
 
@@ -12,7 +12,6 @@ global beach_red_rock
 global beach_grey_rock
 global beach_white_rock
 global mountain_black_rock
-
 
 wallet = 0
 
@@ -212,8 +211,7 @@ def bank():
 
 
 def bank_deposit(wallet):
-
-   while True:
+    while True:
         print(f"You have {wallet} in your wallet, how much would you like to deposit?")
         deposit = input("> ")
         if deposit.isnumeric():
@@ -369,7 +367,6 @@ def bakery():
 
 
 def bakery_buy(wallet):
-
     loaf = 3
     cake = 5
     cigarettes = 2
@@ -449,7 +446,7 @@ def start():
     City Centre""")
 
     print("In your bag you have:")
-    print(inventory.sort())
+    print_inventory(inventory)
     while True:
         print("Where would you like to go?")
         choice = input("> ")
@@ -484,7 +481,11 @@ def statcheck(input, wallet, inventory, bank_file):
     #     print(balance)
 
 
+def print_inventory(inventory):
+    for item in inventory:
+        print(item)
+
+
+
+
 username_enter()
-print("Something else")
-
-
