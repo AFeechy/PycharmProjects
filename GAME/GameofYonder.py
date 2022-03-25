@@ -485,3 +485,6 @@ def statcheck(input, wallet, inventory, bank_file):
 
 
 username_enter()
+print("Something else")
+
+
