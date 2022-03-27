@@ -4,7 +4,7 @@ from sys import argv
 
 script, input_file_1 = argv
 
-inventory = ["thing", "thing 1",  "because of this thing"]
+inventory = []
 
 global wallet
 
@@ -30,6 +30,16 @@ Here you can buy and sell all your favourite rocks, from the safety of your own 
 
     username = input("> ")
     print(f"Hey {username} ! Lets play !")
+    print("""
+    At any time you can type, INVENTORY, BANK or WALLET to check their stats
+    
+    All possible commands are highlighted as CAPITAL
+    
+    Press Enter to Continue !
+    """)
+
+    input("ENTER")
+
     time.sleep(1)
     print("""You step off the boat with the sun on your face and adventure in your heart.
     It has been a dream since childhood to come to The Kingdom of Simon and engage in Rockstrophy of the 
@@ -47,7 +57,7 @@ def beach():
         time.sleep(1)
         print("You are on a warm sunny beach, you think you can see some rocks of interest...")
         time.sleep(2)
-        print("Would you like to search for rocks or go back to the crossroads?")
+        print("Would you like to SEARCH for rocks or go BACK to the crossroads?")
         choice_direction = input("> ")
 
         if choice_direction.lower() == "search":
@@ -67,9 +77,10 @@ def beach():
 
     while True:
         print("Which rock should you pick up? Or other to return")
+        print("RED, GREY, WHITE")
         rock_choice = input("> ")
 
-        if rock_choice.lower() == "red rock":
+        if rock_choice.lower() == "red" or "red rock":
 
             if beach_red_rock >= 1:
                 print("You picked up a red rock!")
@@ -79,7 +90,7 @@ def beach():
             elif beach_red_rock == 0:
                 print("There are no red rocks to collect...")
 
-        elif rock_choice.lower() == "grey rock":
+        elif rock_choice.lower() == "grey" "grey rock":
 
             if beach_grey_rock >= 1:
                 print("You picked up a grey rock!")
@@ -89,7 +100,7 @@ def beach():
             elif beach_grey_rock == 0:
                 print("There are no grey rocks to collect... ")
 
-        elif rock_choice.lower() == "white rock":
+        elif rock_choice.lower() == "white" "white rock":
 
             if beach_white_rock >= 1:
                 print("You picked up a white rock!")
@@ -112,7 +123,7 @@ def mountains():
     print("You reach the saddle of two tall mountains, you think you can see some interesting rocks...")
     time.sleep(1)
     while True:
-        print("Would you like to search for rocks or go back to crossroads?")
+        print("Would you like to SEARCH for rocks or go BACK to crossroads?")
         choice_direction = input('>')
         if choice_direction.lower() == "search":
             break
@@ -128,7 +139,7 @@ def mountains():
             time.sleep(0.5)
 
     print("You look around on the ground and see some rocks... its getting dark though we should be quick...")
-    print(f"You see {mountain_black_rock} black mountain rocks...  Should we take them quickly?..")
+    print(f"You see {mountain_black_rock} black mountain rocks...  Should we take them quickly?.. Y/N")
 
     while True:
         count = 0
@@ -162,11 +173,22 @@ def river():
     time.sleep(0.5)
     print("""You can hear the rushing of the water as you step through a clearing in the trees...
 You can see some interesting rocks on the shore...""")
+    time.sleep(1.5)
+    print("""Oh fuck its the troll under the bridge racist Barry...
+    
+    You try to rub his belly with fresh cinnamon 
+    
+    "No wishes for you today !" He Cries
+    
+    Quick back to the crossroads !    
+    """)
+    time.sleep(5)
+    start()
 
 
 def city_centre():
     time.sleep(0.5)
-    print("The hustle and bustle of the city continues around you... You see a bakery, pawn shop and bank.")
+    print("The hustle and bustle of the city continues around you... You see a BAKERY, PAWN SHOP and a BANK.")
     choice = input("> ")
 
     if choice.lower() == "bank":
@@ -192,7 +214,7 @@ def bank():
     global wallet
 
     while True:
-        print("Welcome to the bank, would you like to deposit or withdraw?")
+        print("Welcome to the bank, would you like to DEPOSIT or WITHDRAW or go BACK?")
         choice = input("> ")
 
         if choice.lower() == "deposit":
@@ -213,7 +235,7 @@ def bank():
 
 def bank_deposit(wallet):
     while True:
-        print(f"You have {wallet} in your wallet, how much would you like to deposit?")
+        print(f"You have {wallet} in your wallet, how much would you like to deposit? Press ENTER to leave")
         deposit = input("> ")
         if deposit.isnumeric():
 
@@ -280,7 +302,7 @@ def pawn_shop():
     print(
         "You enter the shop, there are rocks all over the shelves and in display cabinets. It has that old rock smell")
     while True:
-        print("Would you like to sell rocks or leave ?")
+        print("Would you like to SELL rocks or go BACK ?")
         choice = input("> ")
 
         if "sell" in choice.lower():
@@ -302,7 +324,7 @@ def pawn_shop_sell():
         global wallet
 
         print("What would you like to sell ? ")
-        print(f"Inventory: {inventory.sort()}. Wallet: {wallet}")
+        print(f"Inventory: {inventory}. Wallet: {wallet}")
         choice = input("> ")
         choice_t = choice.title()
 
@@ -351,7 +373,7 @@ def bakery():
 
     while True:
         time.sleep(1.5)
-        print("Would you like to buy bread or leave ?")
+        print("Would you like to BUY bread or LEAVE ?")
         choice = input("> ")
 
         if choice.lower() == "buy":
@@ -374,7 +396,7 @@ def bakery_buy(wallet):
 
     while True:
         print("What would you like to buy?")
-        print(f"{loaf} loafs of bread (£1), {cake} cakes (£2) and {cigarettes} packs of cigarettes (£10).")
+        print(f"{loaf} LOAFs of bread (£1), {cake} CAKEs (£2) and {cigarettes} packs of CIGARETTES (£10).")
         print(inventory)
         print(wallet)
         choice = input("> ")
@@ -441,12 +463,13 @@ def end_credits():
 
 def start():
     print("""You see a signpost, it reads: 
-    Beach 1km
-    Mountains 3km
-    River 500m
-    City Centre""")
+    BEACH 1km
+    MOUNTAINS 3km
+    RIVER 500m
+    CITY CENTRE""")
 
     print("In your bag you have:")
+    print(inventory)
 
     while True:
         print("Where would you like to go?")
@@ -473,17 +496,17 @@ def statcheck(inp, w, i, bank_file):
         print(w)
 
     elif inp == "inventory":
-        print(i)
+        print_inventory(inventory)
 
     elif inp == "bank":
         balance = (open(bank_file, 'r'))
-        print(balance)
+        print(balance.read())
+        balance.close()
 
 
 def print_inventory(inventory):
-    # inventory_sort = inventory.sort()
-    # for item in inventory_sort:
-    for item in inventory:
-        print(item)
+    sorted_i = sorted(inventory)
+    print(sorted_i)
+
 
 username_enter()

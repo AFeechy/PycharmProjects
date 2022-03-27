@@ -3,16 +3,7 @@ from sys import argv
 script, bank_file = argv
 
 
-def statcheck(inp, wallet, inventory, bank_file):
-    if "wallet" in inp:
-        print(wallet)
 
-    elif "inventory" or "i" in inp:
-        print(i)
-
-    elif "bank" in inp:
-        balance = (open(bank_file, 'r'))
-        print(balance)
 
 i = input(">")
 
