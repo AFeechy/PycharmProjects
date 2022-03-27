@@ -76,11 +76,15 @@ def beach():
 {beach_grey_rock} grey rocks and a {beach_white_rock} white rock!""")
 
     while True:
-        print("Which rock should you pick up? Or other to return")
+        print("Which rock should you pick up? Or BACK to return")
         print("RED, GREY, WHITE")
+        print(f"Red Rocks: {beach_red_rock} Grey Rocks: {beach_grey_rock} White Rocks: {beach_white_rock}")
         rock_choice = input("> ")
 
-        if rock_choice.lower() == "red" or "red rock":
+        if rock_choice.lower() == "back":
+            beach()
+
+        if rock_choice.lower() == "red":
 
             if beach_red_rock >= 1:
                 print("You picked up a red rock!")
@@ -90,7 +94,7 @@ def beach():
             elif beach_red_rock == 0:
                 print("There are no red rocks to collect...")
 
-        elif rock_choice.lower() == "grey" "grey rock":
+        elif rock_choice.lower() == "grey":
 
             if beach_grey_rock >= 1:
                 print("You picked up a grey rock!")
@@ -100,7 +104,7 @@ def beach():
             elif beach_grey_rock == 0:
                 print("There are no grey rocks to collect... ")
 
-        elif rock_choice.lower() == "white" "white rock":
+        elif rock_choice.lower() == "white":
 
             if beach_white_rock >= 1:
                 print("You picked up a white rock!")
@@ -112,8 +116,9 @@ def beach():
 
         elif rock_choice.lower() == "bank" or "wallet" or "inventory":
             statcheck(rock_choice, wallet, inventory, input_file_1)
+
         else:
-            beach()
+            break
 
 
 def mountains():
@@ -157,7 +162,7 @@ def mountains():
 
             print(f"That's it.. there are {mountain_black_rock} left...")
             print(f"you have {inventory} in your inventory.")
-            print("Type back to return")
+            print("Enter to return")
 
         elif "n" or "back" in choice_rock.lower():
             mountains()
@@ -173,16 +178,18 @@ def river():
     time.sleep(0.5)
     print("""You can hear the rushing of the water as you step through a clearing in the trees...
 You can see some interesting rocks on the shore...""")
-    time.sleep(1.5)
-    print("""Oh fuck its the troll under the bridge racist Barry...
-    
-    You try to rub his belly with fresh cinnamon 
-    
-    "No wishes for you today !" He Cries
-    
-    Quick back to the crossroads !    
-    """)
     time.sleep(5)
+    print("""
+    
+Oh fuck its the troll under the bridge, Racist Barry...
+    
+You try to rub his belly with fresh cinnamon 
+    
+"No wishes for you today !" He Cries
+    
+Quick back to the crossroads !    
+    """)
+    time.sleep(8)
     start()
 
 
@@ -396,7 +403,7 @@ def bakery_buy(wallet):
 
     while True:
         print("What would you like to buy?")
-        print(f"{loaf} LOAFs of bread (£1), {cake} CAKEs (£2) and {cigarettes} packs of CIGARETTES (£10).")
+        print(f"{loaf} loafs of BREAD (£1), {cake} CAKEs (£2) and {cigarettes} packs of CIGARETTES (£10).")
         print(inventory)
         print(wallet)
         choice = input("> ")
@@ -431,10 +438,10 @@ def bakery_buy(wallet):
                 print("You dirty cunt.. have your filthy fags!")
                 time.sleep(1)
                 print("He throws them at you and they land on the floor... you quickly grab them as he chases you out")
-                time.sleep(3)
-                print("As you reach the door he has jumped over the counter/"
-                      "\n As you step out to freedom he smashes your dirty cunt face in with a rolling pin....")
                 time.sleep(4)
+                print("As you reach the door he has jumped over the counter"
+                "\n As you step out to freedom he smashes your dirty cunt face in with a rolling pin....")
+                time.sleep(5)
                 print(".... just like mama used to...")
                 time.sleep(1)
                 print("You drift into unconsciousness as you climax for the first time since her funeral... ")
@@ -494,9 +501,12 @@ def statcheck(inp, w, i, bank_file):
     print(inp)
     if inp == "wallet":
         print(w)
+        time.sleep(2)
 
     elif inp == "inventory":
+        print(f"You have {len(inventory)} items in inventory")
         print_inventory(inventory)
+
 
     elif inp == "bank":
         balance = (open(bank_file, 'r'))
