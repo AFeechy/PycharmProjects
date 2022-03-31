@@ -1,8 +1,18 @@
 import time
 import sys
-from sys import argv
+# from sys import argv
+import os
 
-script, input_file_1 = argv
+check_file = "bank.txt"
+if os.path.isfile(check_file):
+    print("Saved Bank Opened")
+    input_file_1 = open(check_file)
+
+else:
+    input_file_1 = open('bank.txt', 'w+')
+    print("New Bank Save Created")
+
+# script, input_file_1 = argv
 
 inventory = []
 
