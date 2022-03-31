@@ -25,6 +25,9 @@ Would you like to OPEN or create NEW save file?""")
         elif choice_2.lower() == 'n':
             sys.exit('We must say goodbye to the past before we can look to the future...')
 
+        else:
+            sys.exit('Input Not Accepted')
+
 
 else:
     input_file_1 = open('bank.txt', 'w+')
