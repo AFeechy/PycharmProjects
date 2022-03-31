@@ -535,9 +535,8 @@ def statcheck(inp, w, i, bank_file):
 
 
     elif inp == "bank":
-        balance = (open(bank_file, 'r'))
-        print(balance.read())
-        balance.close()
+        print(input_file_1.read())
+        input_file_1.close()
 
 
 def print_inventory(inventory):
