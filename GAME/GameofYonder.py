@@ -1,18 +1,34 @@
 import time
 import sys
-# from sys import argv
 import os
 
 check_file = "bank.txt"
 if os.path.isfile(check_file):
-    print("Saved Bank Opened")
-    input_file_1 = open(check_file)
+    print(f""""Existing Save File Detected '{check_file}'... 
+
+Would you like to OPEN or create NEW save file?""")
+    choice = input('>')
+
+    if choice.lower() == "open":
+        print("Saved Bank Opened")
+        input_file_1 = open(check_file, 'r+')
+
+    elif choice.lower() == "new":
+        print("This will delete your old save, are you sure ? Y/N")
+        choice_2 = input('>')
+
+        if choice_2.lower() == 'y':
+            input_file_1 = open(check_file, 'w+')
+            input_file_1.write('0')
+            input_file_1.close()
+
+        elif choice_2.lower() == 'n':
+            sys.exit('We must say goodbye to the past before we can look to the future...')
+
 
 else:
     input_file_1 = open('bank.txt', 'w+')
     print("New Bank Save Created")
-
-# script, input_file_1 = argv
 
 inventory = []
 
@@ -450,7 +466,7 @@ def bakery_buy(wallet):
                 print("He throws them at you and they land on the floor... you quickly grab them as he chases you out")
                 time.sleep(4)
                 print("As you reach the door he has jumped over the counter"
-                "\n As you step out to freedom he smashes your dirty cunt face in with a rolling pin....")
+                      "\n As you step out to freedom he smashes your dirty cunt face in with a rolling pin....")
                 time.sleep(5)
                 print(".... just like mama used to...")
                 time.sleep(1)
