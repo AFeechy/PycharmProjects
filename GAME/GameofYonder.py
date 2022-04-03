@@ -30,7 +30,10 @@ Would you like to OPEN or create NEW save file?""")
 
 
 else:
-    input_file_1 = open('bank.txt', 'w+')
+    input_file_1 = open(check_file, 'w+')
+    input_file_1.write('0')
+    input_file_1.close()
+
     print("New Bank Save Created")
 
 inventory = []
@@ -281,7 +284,7 @@ def bank_deposit(wallet):
                 print("Im sorry, you don't have enough funds...")
 
             elif wallet - deposit_int >= 0:
-                with open(input_file_1, 'r') as current_bank:
+                with input_file_1 as current_bank:
                     contents = current_bank.read()
 
                 new_balance = int(contents) + deposit_int
@@ -289,7 +292,7 @@ def bank_deposit(wallet):
 
                 wallet -= deposit_int
 
-                open(input_file_1, 'w').write(converted_new_balance)
+                input_file_1.write(converted_new_balance)
                 print(f"Thank you for depositing {deposit} gold or silver or whatever.")
 
                 return wallet
@@ -304,7 +307,7 @@ def bank_withdraw():
     global wallet
 
     while True:
-        with open(input_file_1, 'r') as current_bank:
+        with input_file_1 as current_bank:
             contents = current_bank.read()
 
         print(f"You have {contents} in your bank, how much would you like to withdraw?")
@@ -322,7 +325,7 @@ def bank_withdraw():
 
                 wallet += withdraw_int
 
-                open(input_file_1, 'w').write(converted_new_balance)
+                input_file_1.write(converted_new_balance)
                 print(f"Thank you for withdrawing {withdraw} gold or silver or whatever."
                       f"You have {wallet} in your wallet")
 
@@ -437,6 +440,9 @@ def bakery_buy(wallet):
         print(wallet)
         choice = input("> ")
 
+        if "leave" or "back" in choice.lower():
+            bakery()
+
         if choice.lower() == "bread":
 
             if loaf > 0 and wallet >= 1:
@@ -483,11 +489,9 @@ def bakery_buy(wallet):
         elif choice.lower() == "bank" or "wallet" or "inventory":
             statcheck(choice, wallet, inventory, input_file_1)
 
-        elif "leave" or "back" in choice.lower():
-            bakery()
-
         else:
             print("Sorry i don't understand that...")
+
 
 
 def end_credits():
