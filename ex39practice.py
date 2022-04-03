@@ -28,3 +28,6 @@ town[new_abbrev] = new_town
 
 print(county)
 print(town)
+
+for county, town in list(town.items()):
+    print(f"The biggest town in {county} is {town}")
