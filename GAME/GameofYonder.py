@@ -284,8 +284,7 @@ def bank_deposit(wallet):
                 print("Im sorry, you don't have enough funds...")
 
             elif wallet - deposit_int >= 0:
-                with input_file_1 as current_bank:
-                    contents = current_bank.read()
+                contents = input_file_1.read()
 
                 new_balance = int(contents) + deposit_int
                 converted_new_balance = str(new_balance)
@@ -542,7 +541,7 @@ def statcheck(inp, w, i, bank_file):
 
     elif inp == "bank":
         print(input_file_1.read())
-        input_file_1.close()
+        input_file_1
 
 
 def print_inventory(inventory):
