@@ -20,7 +20,7 @@ Would you like to OPEN or create NEW save file?""")
         if choice_2.lower() == 'y':
             input_file_1 = open(check_file, 'w+')
             input_file_1.write('0')
-            input_file_1.close()
+
 
         elif choice_2.lower() == 'n':
             sys.exit('We must say goodbye to the past before we can look to the future...')
@@ -32,7 +32,7 @@ Would you like to OPEN or create NEW save file?""")
 else:
     input_file_1 = open(check_file, 'w+')
     input_file_1.write('0')
-    input_file_1.close()
+
 
     print("New Bank Save Created")
 
@@ -307,8 +307,7 @@ def bank_withdraw():
     global wallet
 
     while True:
-        with input_file_1 as current_bank:
-            contents = current_bank.read()
+        contents = input_file_1.read()
 
         print(f"You have {contents} in your bank, how much would you like to withdraw?")
         withdraw = input("> ")
