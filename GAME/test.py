@@ -43,17 +43,8 @@ inventory = []
 
 global wallet
 
-global beach_red_rock
-global beach_grey_rock
-global beach_white_rock
-global mountain_black_rock
+wallet = 20
 
-wallet = 0
-
-beach_red_rock = 5
-beach_grey_rock = 5
-beach_white_rock = 1
-mountain_black_rock = 8
 
 def city_centre():
     time.sleep(0.5)
@@ -63,20 +54,21 @@ def city_centre():
     if choice.lower() == "bank":
         bank()
 
-    elif choice.lower() == "pawn shop":
-        pawn_shop()
+    # elif choice.lower() == "pawn shop":
+    #     pawn_shop()
+    #
+    # elif choice.lower() == "bakery":
+    #     bakery()
+    #
+    # elif choice.lower() == "bank" or "wallet" or "inventory":
+    #     statcheck(choice, wallet, inventory, input_file_1)
+    #
+    # elif choice.lower() == "back" or "leave" or "start":
+    #     start()
+    #
+    # else:
+    #     city_centre()
 
-    elif choice.lower() == "bakery":
-        bakery()
-
-    elif choice.lower() == "bank" or "wallet" or "inventory":
-        statcheck(choice, wallet, inventory, input_file_1)
-
-    elif choice.lower() == "back" or "leave" or "start":
-        start()
-
-    else:
-        city_centre()
 
 def bank():
     global wallet
@@ -94,15 +86,14 @@ def bank():
         elif choice.lower() == 'back' or 'city' or 'city centre':
             city_centre()
 
-        elif choice.lower() == "bank" or "wallet" or "inventory":
-            statcheck(choice, wallet, inventory, input_file_1)
+        # elif choice.lower() == "bank" or "wallet" or "inventory":
+          #  statcheck(choice, wallet, inventory, input_file_1)
 
         else:
             print("I'm sorry i don't understand that...")
 
 
 def bank_deposit(wallet):
-
     while True:
         print(f"You have {wallet} in your wallet, how much would you like to deposit? Press ENTER to leave")
         deposit = input("> ")
@@ -121,7 +112,12 @@ def bank_deposit(wallet):
 
                 wallet -= deposit_int
 
+                print('new balance', new_balance)
+                print('converted new balance', converted_new_balance)
+                input_file_1.seek(0)
                 input_file_1.write(converted_new_balance)
+                input_file_1.seek(0)
+                print('input file 1 converted balance', input_file_1.read())
                 print(f"Thank you for depositing {deposit} gold or silver or whatever.")
 
                 return wallet
@@ -149,15 +145,18 @@ def bank_withdraw():
                 print("Im sorry, you don't have enough funds...")
 
             elif contents_int - withdraw_int >= 0:
-                print("contents", contents_int)
-                print("withdraw", withdraw_int)
+                print("contents of bank.txt", contents_int)
+                print("withdraw amount input", withdraw_int)
                 new_balance = contents_int - withdraw_int
-                print("new balance", new_balance)
+                print("new balance after contents - withdraw input", new_balance)
                 converted_new_balance = str(new_balance)
+                print('converted new balance str(new_balance)', converted_new_balance)
 
                 wallet += withdraw_int
                 input_file_1.seek(0)
                 input_file_1.write(converted_new_balance)
+                input_file_1.seek(0)
+                print('input file converted balance print', input_file_1.read())
                 print(f"Thank you for withdrawing {withdraw} gold or silver or whatever."
                       f"You have {wallet} in your wallet")
 
@@ -166,5 +165,6 @@ def bank_withdraw():
                 bank()
         else:
             bank()
+
 
 bank()
