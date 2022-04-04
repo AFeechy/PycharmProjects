@@ -12,6 +12,7 @@ Would you like to OPEN or create NEW save file?""")
     if choice.lower() == "open":
         print("Saved Bank Opened")
         input_file_1 = open(check_file, 'r+')
+        print(input_file_1.read())
 
     elif choice.lower() == "new":
         print("This will delete your old save, are you sure ? Y/N")
@@ -19,8 +20,9 @@ Would you like to OPEN or create NEW save file?""")
 
         if choice_2.lower() == 'y':
             input_file_1 = open(check_file, 'w+')
+            print(input_file_1.read())
             input_file_1.write('0')
-
+            print(input_file_1.read())
 
         elif choice_2.lower() == 'n':
             sys.exit('We must say goodbye to the past before we can look to the future...')
@@ -31,12 +33,15 @@ Would you like to OPEN or create NEW save file?""")
 
 else:
     input_file_1 = open(check_file, 'w+')
+    print(input_file_1.read())
     input_file_1.write('0')
-
+    print(input_file_1.read())
 
     print("New Bank Save Created")
 
 inventory = []
+
+global contents
 
 global wallet
 
@@ -44,6 +49,8 @@ global beach_red_rock
 global beach_grey_rock
 global beach_white_rock
 global mountain_black_rock
+
+contents = input_file_1.read()
 
 wallet = 0
 
@@ -273,6 +280,9 @@ def bank():
 
 
 def bank_deposit(wallet):
+
+    global contents
+
     while True:
         print(f"You have {wallet} in your wallet, how much would you like to deposit? Press ENTER to leave")
         deposit = input("> ")
@@ -286,7 +296,7 @@ def bank_deposit(wallet):
             elif wallet - deposit_int >= 0:
                 contents = input_file_1.read()
 
-                new_balance = int(contents) + deposit_int
+                new_balance = contents + deposit
                 converted_new_balance = str(new_balance)
 
                 wallet -= deposit_int
@@ -306,8 +316,8 @@ def bank_withdraw():
     global wallet
 
     while True:
-        contents = input_file_1.read()
-
+        global contents
+        print(contents)
         print(f"You have {contents} in your bank, how much would you like to withdraw?")
         withdraw = input("> ")
         if withdraw.isnumeric():
@@ -327,12 +337,10 @@ def bank_withdraw():
                 print(f"Thank you for withdrawing {withdraw} gold or silver or whatever."
                       f"You have {wallet} in your wallet")
 
-                return wallet
-
             else:
-                break
+                bank()
         else:
-            break
+            bank()
 
 
 def pawn_shop():
@@ -438,7 +446,7 @@ def bakery_buy(wallet):
         print(wallet)
         choice = input("> ")
 
-        if "leave" or "back" in choice.lower():
+        if choice.lower() == 'back':
             bakery()
 
         if choice.lower() == "bread":
@@ -489,7 +497,6 @@ def bakery_buy(wallet):
 
         else:
             print("Sorry i don't understand that...")
-
 
 
 def end_credits():
