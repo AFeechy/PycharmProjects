@@ -106,19 +106,21 @@ def bank_deposit(wallet):
 
             elif wallet - deposit_int >= 0:
                 contents = input_file_1.read()
+                contents_int = int(contents)
 
-                new_balance = contents + deposit
+                new_balance = contents_int + deposit_int
+                print('contents:', contents_int, 'deposit:', deposit, 'new  balance:', new_balance)
                 converted_new_balance = str(new_balance)
 
                 wallet -= deposit_int
 
-                print('new balance', new_balance)
                 print('converted new balance', converted_new_balance)
+                with open(check_file, 'w+') as save_file:
+                    save_file.write(converted_new_balance)
                 input_file_1.seek(0)
-                input_file_1.write(converted_new_balance)
-                input_file_1.seek(0)
-                print('input file 1 converted balance', input_file_1.read())
+                print('input file 1 written converted balance', input_file_1.read())
                 print(f"Thank you for depositing {deposit} gold or silver or whatever.")
+                input_file_1.seek(0)
 
                 return wallet
 
@@ -153,9 +155,9 @@ def bank_withdraw():
                 print('converted new balance str(new_balance)', converted_new_balance)
 
                 wallet += withdraw_int
-                input_file_1.seek(0)
-                input_file_1.write(converted_new_balance)
-                input_file_1.seek(0)
+                with open(check_file, 'w+') as save_file:
+                    save_file.write(converted_new_balance)
+
                 print('input file converted balance print', input_file_1.read())
                 print(f"Thank you for withdrawing {withdraw} gold or silver or whatever."
                       f"You have {wallet} in your wallet")
